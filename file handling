@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<string.h>
+main()
+{
+	FILE *fp;
+	FILE *fp1;
+	char s[20];
+	char ch;
+	char newch[500];
+    int i=0, j, COUNT=0;
+	fp=fopen("abc.txt","w");
+	if(fp==NULL)
+	{
+		printf("file not found");
+	}
+	printf("Enter data:\n");
+	gets(s);
+	fputs(s,fp);
+    fclose(fp);
+    fp1=fopen("abc.txt", "r");
+    if(fp1==NULL)
+    {
+        printf("File NOT FOUND");
+    }
+    printf("\nThe original content is:\n\n");
+    ch = getc(fp1);
+    while(ch != EOF)
+    {
+        COUNT++;
+        putchar(ch);
+        newch[i] = ch;
+        i++;
+        ch = getc(fp1);
+    }
+    printf("\n\n\n");
+    printf("The content in reverse order is:\n\n");
+    for(j=(COUNT-1); j>=0; j--)
+    {
+        ch = newch[j];
+        printf("%c", ch);
+    }
+    printf("\n");
+    fclose(fp1);
+    return 0;
+}
